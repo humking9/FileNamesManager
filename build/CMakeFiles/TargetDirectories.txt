@@ -1,6 +1,0 @@
-C:/Users/TEX/Documents/FileNamesManager/build/CMakeFiles/FileNamesManager.dir
-C:/Users/TEX/Documents/FileNamesManager/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/TEX/Documents/FileNamesManager/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/TEX/Documents/FileNamesManager/build/_deps/glfw-build/CMakeFiles/ALL_BUILD.dir
-C:/Users/TEX/Documents/FileNamesManager/build/_deps/glfw-build/src/CMakeFiles/glfw.dir
-C:/Users/TEX/Documents/FileNamesManager/build/_deps/glfw-build/src/CMakeFiles/update_mappings.dir
