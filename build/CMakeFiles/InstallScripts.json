@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/TEX/Documents/FileNamesManager/build/cmake_install.cmake",
+		"C:/Users/TEX/Documents/FileNamesManager/build/_deps/glfw-build/cmake_install.cmake",
+		"C:/Users/TEX/Documents/FileNamesManager/build/_deps/glfw-build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
