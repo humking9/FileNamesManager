@@ -1,0 +1,14 @@
+# Target labels
+ imgui-populate
+# Source files and their labels
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/76f1c5451bf42ade8f847a482c47f42e/imgui-populate.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/8826260db548679123276413abec2993/imgui-populate-complete.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-build.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-configure.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-download.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-install.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-mkdir.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-patch.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-test.rule
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-update.rule

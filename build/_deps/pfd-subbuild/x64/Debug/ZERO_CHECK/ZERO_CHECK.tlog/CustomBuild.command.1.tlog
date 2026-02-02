@@ -1,0 +1,10 @@
+^C:\USERS\TEX\DOCUMENTS\FILENAMESMANAGER\BUILD\_DEPS\PFD-SUBBUILD\CMAKEFILES\B5F28B32FB095A58568B03491CD5AD53\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild -BC:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/pfd-populate.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

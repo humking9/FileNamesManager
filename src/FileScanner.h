@@ -19,7 +19,7 @@ struct FileEntry {
 
 class FileScanner {
 public:
-    void ScanDirectory(const std::string& path);
+    void ScanDirectory(const std::string& path, bool recursive = false);
     void ApplyFilter(const std::string& pattern);
     
     // Returns number of successes

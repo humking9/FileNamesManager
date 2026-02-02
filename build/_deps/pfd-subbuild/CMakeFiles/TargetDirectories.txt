@@ -1,0 +1,3 @@
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/pfd-populate.dir
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/ZERO_CHECK.dir

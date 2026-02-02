@@ -68,7 +68,7 @@ set(SOURCES
 # add_compile_definitions() 
 
 # Create Executable
-add_executable(FileNamesManager ${SOURCES})
+add_executable(FileNamesManager WIN32 ${SOURCES})
 
 # Include Directories
 target_include_directories(FileNamesManager PRIVATE

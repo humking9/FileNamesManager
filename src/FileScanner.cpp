@@ -5,7 +5,7 @@
 
 namespace fs = std::filesystem;
 
-void FileScanner::ScanDirectory(const std::string& path) {
+void FileScanner::ScanDirectory(const std::string& path, bool recursive) {
     m_files.clear();
     m_current_path = path;
     
@@ -15,14 +15,16 @@ void FileScanner::ScanDirectory(const std::string& path) {
     }
 
     try {
-        for (const auto& entry : fs::directory_iterator(path, fs::directory_options::skip_permission_denied, ec)) {
-            if (ec) continue; 
-            
+        auto add_entry = [&](const fs::directory_entry& entry) {
             FileEntry file;
             file.path = entry.path().string();
+            // Store relative path or full path? Using full path effectively.
+            // For display, we might want just filename, but if recursive, maybe relative path to root?
+            // For now, keeping simple filename for display, but user might want to see structure.
+            // Let's stick to filename for now, maybe tooltip for full path?
+            // Actually, if recursive, duplicates of filenames are possible.
             file.name = entry.path().filename().string();
             
-            // Handle error codes for status checks
             std::error_code status_ec;
             file.is_directory = entry.is_directory(status_ec);
             if (status_ec) file.is_directory = false;
@@ -37,7 +39,20 @@ void FileScanner::ScanDirectory(const std::string& path) {
             file.is_selected = false;
             file.is_filtered = false;
             m_files.push_back(file);
+        };
+
+        if (recursive) {
+            for (const auto& entry : fs::recursive_directory_iterator(path, fs::directory_options::skip_permission_denied, ec)) {
+                if (ec) continue;
+                add_entry(entry);
+            }
+        } else {
+            for (const auto& entry : fs::directory_iterator(path, fs::directory_options::skip_permission_denied, ec)) {
+                if (ec) continue;
+                add_entry(entry);
+            }
         }
+
     } catch (const fs::filesystem_error& e) {
         std::cerr << "Filesystem error during scan: " << e.what() << std::endl;
     }

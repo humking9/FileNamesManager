@@ -135,7 +135,7 @@
       <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/TEX/Documents/FileNamesManager/build/Debug/FileNamesManager.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -193,7 +193,7 @@
       <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/TEX/Documents/FileNamesManager/build/Release/FileNamesManager.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -251,7 +251,7 @@
       <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/TEX/Documents/FileNamesManager/build/MinSizeRel/FileNamesManager.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -308,7 +308,7 @@
       <LinkErrorReporting></LinkErrorReporting>
       <ProgramDataBaseFile>C:/Users/TEX/Documents/FileNamesManager/build/RelWithDebInfo/FileNamesManager.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>

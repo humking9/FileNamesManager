@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/imgui-populate"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/76f1c5451bf42ade8f847a482c47f42e/imgui-populate.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/8826260db548679123276413abec2993/imgui-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/imgui-subbuild/CMakeFiles/99a9a78ac4a9ec08becf10a24843230d/imgui-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"imgui-populate"
+		],
+		"name" : "imgui-populate"
+	}
+}

@@ -1,6 +1,9 @@
+#define NOMINMAX // Prevent Windows.h from defining min/max macros
+
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm> // for std::min/std::max
 
 // Loader must be included before GLFW/ImGui internals usually, or ImGui backend handles it
 // #include <GL/gl3w.h> 
@@ -152,9 +155,12 @@ int main(int, char**)
     bool show_rename_popup = false;
     char rename_suffix_buffer[256] = "";
     
-    // Filter State
+    // Filter & Scan State
     char filter_buffer[256] = "";
+    bool apply_filter_to_all_folders = false; // "Apply Filter To All" (Recursive)
     
+    int last_selected_index = -1; // For Shift+Click range selection
+
     // Main loop
     while (!glfwWindowShouldClose(window))
     {
@@ -189,8 +195,9 @@ int main(int, char**)
         if (ImGui::Button("Select Folder")) {
             auto selection = pfd::select_folder("Select Directory", "").result();
             if (!selection.empty()) {
-                scanner.ScanDirectory(selection);
-                my_log.AddLog("Scanned directory: %s\n", selection.c_str());
+                scanner.ScanDirectory(selection, apply_filter_to_all_folders);
+                my_log.AddLog("Scanned directory: %s (Recursive: %s)\n", selection.c_str(), apply_filter_to_all_folders ? "Yes" : "No");
+                last_selected_index = -1;
             }
         }
         ImGui::SameLine();
@@ -206,6 +213,23 @@ int main(int, char**)
             scanner.ApplyFilter(filter_buffer);
         }
 
+        // Apply Filter To All (Recursive Scan)
+        ImGui::SameLine();
+        if (ImGui::Checkbox("Apply Filter To All", &apply_filter_to_all_folders)) {
+             // Optional: Immediate rescan if a path is already selected?
+             // For now, just toggles the state for next scan or manual refresh.
+             // Let's allow manual rescan if path exists
+             if (!scanner.GetCurrentPath().empty()) {
+                 scanner.ScanDirectory(scanner.GetCurrentPath(), apply_filter_to_all_folders);
+                 scanner.ApplyFilter(filter_buffer); // Re-apply filter
+                 my_log.AddLog("Re-scanned with Recursive: %s\n", apply_filter_to_all_folders ? "Yes" : "No");
+                 last_selected_index = -1;
+             }
+        }
+        if (ImGui::IsItemHovered()) {
+            ImGui::SetTooltip("Apply's fillter to all folders incloding sub folders");
+        }
+
         ImGui::SameLine();
         if (ImGui::Button("Select All")) {
             for (auto& f : scanner.GetFilesModifiable()) {
@@ -219,6 +243,7 @@ int main(int, char**)
                 f.is_selected = false;
             }
             my_log.AddLog("Deselected all files.\n");
+            last_selected_index = -1;
         }
         
         // Count selected
@@ -237,6 +262,7 @@ int main(int, char**)
              int deleted = scanner.ExecuteDelete();
              if (deleted > 0)
                 my_log.AddLog("Deleted %d files.\n", deleted);
+             last_selected_index = -1;
         }
         
         ImGui::SameLine();
@@ -260,6 +286,7 @@ int main(int, char**)
                 
                 ImGui::CloseCurrentPopup();
                 show_rename_popup = false;
+                last_selected_index = -1;
             }
             ImGui::SetItemDefaultFocus();
             ImGui::SameLine();
@@ -283,15 +310,37 @@ int main(int, char**)
             ImGui::TableHeadersRow();
 
             auto& files = scanner.GetFilesModifiable();
-            for (auto& file : files) {
+            // Need index for range selection, so use standard for loop
+            for (int i = 0; i < (int)files.size(); i++) {
+                auto& file = files[i];
                 if (file.is_filtered) continue;
 
                 ImGui::TableNextRow();
                 ImGui::TableNextColumn();
-                ImGui::Checkbox(("##" + file.path).c_str(), &file.is_selected);
                 
+                // Custom behavior for Shift+Click
+                // We use a custom Checkbox-like behavior or just intercept the click
+                bool clicked = ImGui::Checkbox(("##" + std::to_string(i)).c_str(), &file.is_selected);
+                
+                if (clicked) {
+                     if (ImGui::GetIO().KeyShift && last_selected_index != -1) {
+                         // Range select
+                         int start = (std::min)(last_selected_index, i);
+                         int end = (std::max)(last_selected_index, i);
+                         bool new_state = file.is_selected; // The state we just toggled to
+                         
+                         for (int k = start; k <= end; k++) {
+                             if (!files[k].is_filtered) {
+                                  files[k].is_selected = new_state;
+                             }
+                         }
+                     }
+                     last_selected_index = i;
+                }
+
                 ImGui::TableNextColumn();
                 ImGui::TextUnformatted(file.name.c_str());
+                if (ImGui::IsItemHovered()) ImGui::SetTooltip("%s", file.path.c_str()); // Show full path on hover
                 
                 ImGui::TableNextColumn();
                 if (file.is_directory)
@@ -333,3 +382,11 @@ int main(int, char**)
 
     return 0;
 }
+
+#ifdef _WIN32
+#include <windows.h>
+int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+    return main(__argc, __argv);
+}
+#endif

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\f6fcc790ebadb7aa9a34f80cd7fbe8bc\pfd-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\0f70c6351d693976cba1717ab88c326c\pfd-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\b5f28b32fb095a58568b03491cd5ad53\pfd-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\TEX\Documents\FileNamesManager\build\_deps\pfd-subbuild\CMakeFiles\pfd-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{8E0B9ABE-4CC1-39B5-B623-545172F71B5C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

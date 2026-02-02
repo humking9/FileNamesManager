@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/pfd-populate"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/b5f28b32fb095a58568b03491cd5ad53/pfd-populate.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/0f70c6351d693976cba1717ab88c326c/pfd-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/TEX/Documents/FileNamesManager/build/_deps/pfd-subbuild/CMakeFiles/f6fcc790ebadb7aa9a34f80cd7fbe8bc/pfd-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"pfd-populate"
+		],
+		"name" : "pfd-populate"
+	}
+}
