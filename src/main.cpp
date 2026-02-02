@@ -49,19 +49,14 @@ struct AppLog {
                 LineOffsets.push_back(old_size + 1);
     }
 
-    void Draw(const char* title, bool* p_open = NULL) {
-        if (!ImGui::Begin(title, p_open)) {
-            ImGui::End();
-            return;
-        }
-
+    void Draw() {
         // Options menu
         if (ImGui::BeginPopup("Options")) {
             ImGui::Checkbox("Auto-scroll", &AutoScroll);
             ImGui::EndPopup();
         }
 
-        // Main window
+        // Controls
         if (ImGui::Button("Options"))
             ImGui::OpenPopup("Options");
         ImGui::SameLine();
@@ -99,9 +94,73 @@ struct AppLog {
             ImGui::SetScrollHereY(1.0f);
 
         ImGui::EndChild();
-        ImGui::End();
     }
 };
+
+void SetupStyle() {
+    ImGuiStyle& style = ImGui::GetStyle();
+    ImVec4* colors = style.Colors;
+
+    style.WindowRounding = 0.0f;
+    style.ChildRounding = 0.0f;
+    style.FrameRounding = 3.0f;
+    style.GrabRounding = 3.0f;
+    style.PopupRounding = 3.0f;
+    style.ScrollbarRounding = 3.0f;
+    style.TabRounding = 3.0f;
+    
+    // Charcoal Black & Dark Gray
+    colors[ImGuiCol_Text]                   = ImVec4(0.90f, 0.90f, 0.90f, 1.00f);
+    colors[ImGuiCol_TextDisabled]           = ImVec4(0.60f, 0.60f, 0.60f, 1.00f);
+    colors[ImGuiCol_WindowBg]               = ImVec4(0.12f, 0.12f, 0.12f, 1.00f); // Charcoal
+    colors[ImGuiCol_ChildBg]                = ImVec4(0.12f, 0.12f, 0.12f, 1.00f);
+    colors[ImGuiCol_PopupBg]                = ImVec4(0.15f, 0.15f, 0.15f, 0.98f);
+    colors[ImGuiCol_Border]                 = ImVec4(0.25f, 0.25f, 0.25f, 1.00f); 
+    colors[ImGuiCol_BorderShadow]           = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+    colors[ImGuiCol_FrameBg]                = ImVec4(0.18f, 0.18f, 0.19f, 1.00f); 
+    colors[ImGuiCol_FrameBgHovered]         = ImVec4(0.25f, 0.25f, 0.26f, 1.00f);
+    colors[ImGuiCol_FrameBgActive]          = ImVec4(0.30f, 0.30f, 0.31f, 1.00f);
+    colors[ImGuiCol_TitleBg]                = ImVec4(0.10f, 0.10f, 0.10f, 1.00f);
+    colors[ImGuiCol_TitleBgActive]          = ImVec4(0.14f, 0.14f, 0.14f, 1.00f);
+    colors[ImGuiCol_MenuBarBg]              = ImVec4(0.14f, 0.14f, 0.14f, 1.00f);
+    
+    // Muted Blue Accents
+    colors[ImGuiCol_ScrollbarBg]            = ImVec4(0.10f, 0.10f, 0.10f, 0.60f);
+    colors[ImGuiCol_ScrollbarGrab]          = ImVec4(0.30f, 0.30f, 0.30f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabHovered]   = ImVec4(0.40f, 0.40f, 0.40f, 1.00f);
+    colors[ImGuiCol_ScrollbarGrabActive]    = ImVec4(0.51f, 0.51f, 0.51f, 1.00f);
+    
+    colors[ImGuiCol_CheckMark]              = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_SliderGrab]             = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_SliderGrabActive]       = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    
+    colors[ImGuiCol_Button]                 = ImVec4(0.20f, 0.25f, 0.30f, 1.00f); // Default button (dark blue-grey)
+    colors[ImGuiCol_ButtonHovered]          = ImVec4(0.28f, 0.35f, 0.42f, 1.00f);
+    colors[ImGuiCol_ButtonActive]           = ImVec4(0.06f, 0.53f, 0.98f, 1.00f);
+    
+    colors[ImGuiCol_Header]                 = ImVec4(0.26f, 0.59f, 0.98f, 0.31f);
+    colors[ImGuiCol_HeaderHovered]          = ImVec4(0.26f, 0.59f, 0.98f, 0.80f);
+    colors[ImGuiCol_HeaderActive]           = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    
+    colors[ImGuiCol_Separator]              = colors[ImGuiCol_Border];
+    colors[ImGuiCol_SeparatorHovered]       = ImVec4(0.10f, 0.40f, 0.75f, 0.78f);
+    colors[ImGuiCol_SeparatorActive]        = ImVec4(0.10f, 0.40f, 0.75f, 1.00f);
+    
+    colors[ImGuiCol_ResizeGrip]             = ImVec4(0.26f, 0.59f, 0.98f, 0.25f);
+    colors[ImGuiCol_ResizeGripHovered]      = ImVec4(0.26f, 0.59f, 0.98f, 0.67f);
+    colors[ImGuiCol_ResizeGripActive]       = ImVec4(0.26f, 0.59f, 0.98f, 0.95f);
+    
+    colors[ImGuiCol_PlotLines]              = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
+    colors[ImGuiCol_PlotLinesHovered]       = ImVec4(1.00f, 0.43f, 0.35f, 1.00f);
+    colors[ImGuiCol_PlotHistogram]          = ImVec4(0.90f, 0.70f, 0.00f, 1.00f);
+    colors[ImGuiCol_PlotHistogramHovered]   = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
+    colors[ImGuiCol_TextSelectedBg]         = ImVec4(0.26f, 0.59f, 0.98f, 0.35f);
+    colors[ImGuiCol_DragDropTarget]         = ImVec4(1.00f, 1.00f, 0.00f, 0.90f);
+    colors[ImGuiCol_NavHighlight]           = ImVec4(0.26f, 0.59f, 0.98f, 1.00f);
+    colors[ImGuiCol_NavWindowingHighlight]  = ImVec4(1.00f, 1.00f, 1.00f, 0.70f);
+    colors[ImGuiCol_NavWindowingDimBg]      = ImVec4(0.80f, 0.80f, 0.80f, 0.20f);
+    colors[ImGuiCol_ModalWindowDimBg]       = ImVec4(0.80f, 0.80f, 0.80f, 0.35f);
+}
 
 int main(int, char**)
 {
@@ -111,124 +170,119 @@ int main(int, char**)
 
     // Decide GL+GLSL versions
 #if defined(__APPLE__)
-    // GL 3.3 Core + GLSL 150
     const char* glsl_version = "#version 150";
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // Required on Mac
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); 
 #else
-    // GL 3.3 + GLSL 330
     const char* glsl_version = "#version 330";
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-    //glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // 3.0+ only
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 #endif
 
-    // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "FileNamesManager", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(1280, 800, "FileNamesManager", NULL, NULL);
     if (window == NULL)
         return 1;
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1); // Enable vsync
+    glfwSwapInterval(1); 
 
-    // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-    // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
+    SetupStyle(); // Apply custom style
 
-    // Setup Platform/Renderer backends
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
 
-    // Application State
+    // App State
     FileScanner scanner;
     AppLog my_log;
     my_log.AddLog("Welcome to FileNamesManager!\n");
     
-    // Rename State
     bool show_rename_popup = false;
     char rename_suffix_buffer[256] = "";
-    
-    // Filter & Scan State
     char filter_buffer[256] = "";
-    bool apply_filter_to_all_folders = false; // "Apply Filter To All" (Recursive)
-    
-    int last_selected_index = -1; // For Shift+Click range selection
+    bool is_recursive_mode = false;
+    int last_selected_index = -1;
 
-    // Main loop
     while (!glfwWindowShouldClose(window))
     {
         glfwPollEvents();
-
-        // Start the Dear ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        // Root Window covering whole viewport
         ImGuiViewport* viewport = ImGui::GetMainViewport();
         ImGui::SetNextWindowPos(viewport->Pos);
         ImGui::SetNextWindowSize(viewport->Size);
-        // ImGui::SetNextWindowViewport(viewport->ID); // Docking branch only
         
         ImGuiWindowFlags window_flags = 0;
-        // ImGuiWindowFlags_NoDocking is docking branch only. ImGuiWindowFlags_NoMenuBar does not exist (it is default).
         window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
         window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(10.0f, 10.0f)); 
         ImGui::Begin("MainDockSpace", nullptr, window_flags);
-        ImGui::PopStyleVar(2);
+        ImGui::PopStyleVar(3);
         
-        // Define layout using child windows or tables to put log at bottom
-        float log_height = 150.0f;
-        float main_area_height = ImGui::GetContentRegionAvail().y - log_height - 10.0f;
+        // Count selected
+        int selected_count = 0;
+        for(const auto& f : scanner.GetFiles()) if(f.is_selected) selected_count++;
 
-        // --- Top Bar ---
-        if (ImGui::Button("Select Folder")) {
+        // --- 1. Top Toolbar ---
+        // Blue "Select Folder" Button
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.26f, 0.59f, 0.98f, 1.00f)); 
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.35f, 0.65f, 1.00f, 1.00f));
+        if (ImGui::Button("Select Folder", ImVec2(120, 30))) {
             auto selection = pfd::select_folder("Select Directory", "").result();
             if (!selection.empty()) {
-                scanner.ScanDirectory(selection, apply_filter_to_all_folders);
-                my_log.AddLog("Scanned directory: %s (Recursive: %s)\n", selection.c_str(), apply_filter_to_all_folders ? "Yes" : "No");
+                scanner.ScanDirectory(selection, is_recursive_mode);
+                my_log.AddLog("Scanned directory: %s\n", selection.c_str());
                 last_selected_index = -1;
             }
         }
+        ImGui::PopStyleColor(2);
+
         ImGui::SameLine();
-        ImGui::Text("Path: %s", scanner.GetCurrentPath().c_str());
+        ImGui::AlignTextToFramePadding();
+        ImGui::Text("Path:");
+        ImGui::SameLine();
+        ImGui::TextColored(ImVec4(0.7f, 0.7f, 0.7f, 1.0f), "%s", scanner.GetCurrentPath().empty() ? "[No Folder Selected]" : scanner.GetCurrentPath().c_str());
 
-        ImGui::Separator();
+        // Right-aligned Selected Count
+        float count_width = 150.0f;
+        ImGui::SameLine(ImGui::GetContentRegionAvail().x - count_width);
+        ImGui::Text("%d Selected Files", selected_count);
 
-        // --- Control Panel ---
-        // Filter
+        ImGui::Dummy(ImVec2(0, 5)); // Spacer
+
+        // --- 2. Filter Bar ---
+        ImGui::AlignTextToFramePadding();
         ImGui::Text("Filter:");
         ImGui::SameLine();
+        ImGui::SetNextItemWidth(400);
         if (ImGui::InputText("##filter", filter_buffer, IM_ARRAYSIZE(filter_buffer))) {
             scanner.ApplyFilter(filter_buffer);
         }
 
-        // Apply Filter To All (Recursive Scan)
-        ImGui::SameLine();
-        if (ImGui::Checkbox("Apply Filter To All", &apply_filter_to_all_folders)) {
-             // Optional: Immediate rescan if a path is already selected?
-             // For now, just toggles the state for next scan or manual refresh.
-             // Let's allow manual rescan if path exists
-             if (!scanner.GetCurrentPath().empty()) {
-                 scanner.ScanDirectory(scanner.GetCurrentPath(), apply_filter_to_all_folders);
-                 scanner.ApplyFilter(filter_buffer); // Re-apply filter
-                 my_log.AddLog("Re-scanned with Recursive: %s\n", apply_filter_to_all_folders ? "Yes" : "No");
-                 last_selected_index = -1;
-             }
+       ImGui::SameLine();
+        if (ImGui::Checkbox("Recursive Scan", &is_recursive_mode)) {
+            std::string current_path = scanner.GetCurrentPath();
+            if (!current_path.empty()) {
+                scanner.ScanDirectory(current_path, is_recursive_mode);
+                scanner.ApplyFilter(filter_buffer);
+                
+                my_log.AddLog("[System] Recursive scan toggled: %s\n", is_recursive_mode ? "ENABLED" : "DISABLED");
+                last_selected_index = -1;
+            }
         }
-        if (ImGui::IsItemHovered()) {
-            ImGui::SetTooltip("Apply's fillter to all folders incloding sub folders");
-        }
+        if (ImGui::IsItemHovered()) 
+            ImGui::SetTooltip("Apply filter to all subdirectories within the current path.");
 
         ImGui::SameLine();
         if (ImGui::Button("Select All")) {
@@ -245,28 +299,144 @@ int main(int, char**)
             my_log.AddLog("Deselected all files.\n");
             last_selected_index = -1;
         }
+
+        ImGui::Dummy(ImVec2(0, 5)); // Spacer
+
+        // --- 3. Main File Table ---
+        float log_height = 180.0f;
+        float actions_height = 50.0f;
+        float table_height = ImGui::GetContentRegionAvail().y - log_height - actions_height - 10.0f;
         
-        // Count selected
-        int selected_count = 0;
-        for(const auto& f : scanner.GetFiles()) if(f.is_selected) selected_count++;
+        ImGui::BeginChild("FileArea", ImVec2(0, table_height), true);
+        
+        // Handle Shortcuts (Must be done before Table to catch events, or inside if focused, but Window focus is safe)
+        if (ImGui::IsWindowFocused(ImGuiFocusedFlags_ChildWindows)) {
+            if (ImGui::GetIO().KeyCtrl && ImGui::IsKeyPressed(ImGuiKey_A)) {
+                for (auto& f : scanner.GetFilesModifiable()) {
+                    if (!f.is_filtered) f.is_selected = true;
+                }
+                my_log.AddLog("Selected all visible files (Ctrl+A).\n");
+            }
+            if (ImGui::IsKeyPressed(ImGuiKey_Delete) && selected_count > 0) {
+                 int deleted = scanner.ExecuteDelete();
+                 if (deleted > 0) my_log.AddLog("Deleted %d files (Del).\n", deleted);
+                 last_selected_index = -1;
+            }
+            if (ImGui::IsKeyPressed(ImGuiKey_F2) && selected_count > 0) {
+                show_rename_popup = true;
+                ImGui::OpenPopup("Rename Files");
+            }
+        }
 
-        ImGui::SameLine();
-        ImGui::Text("| %d Selected", selected_count);
+        static ImGuiTableFlags table_flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_Borders | ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable;
+        
+        if (ImGui::BeginTable("FileTable", 4, table_flags)) {
+            ImGui::TableSetupScrollFreeze(0, 1);
+            // Select column is now just an indicator or redundant if whole row is selectable. 
+            // Let's keep a small checkbox for visual clarity but allow row click.
+            ImGui::TableSetupColumn("Select", ImGuiTableColumnFlags_WidthFixed, 30.0f);
+            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_None);
+            ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 100.0f);
+            ImGui::TableHeadersRow();
 
-        // Actions
+            auto& files = scanner.GetFilesModifiable();
+            for (int i = 0; i < (int)files.size(); i++) {
+                auto& file = files[i];
+                if (file.is_filtered) continue;
+
+                ImGui::TableNextRow();
+                ImGui::TableNextColumn();
+                
+                // Selectable Row Logic
+                // We want the whole row to be interactable. ImGui::Selectable spans width.
+                // But we are in a table column. To make the WHOLE row selectable, we usually use Selectable in the first column 
+                // with SpanAllColumns flag.
+                
+                bool is_selected = file.is_selected;
+                ImGuiSelectableFlags selectable_flags = ImGuiSelectableFlags_SpanAllColumns | ImGuiSelectableFlags_AllowItemOverlap;
+                
+                // Checkbox purely for visual or individual toggle without affecting selection logic of row?
+                // Actually, if we use Selectable, we replace the checkbox interaction usually.
+                // Let's draw the checkbox manually or just use the Selectable state.
+                // We will use the Selectable for the interaction.
+                
+                // Interaction
+                if (ImGui::Selectable(("##" + std::to_string(i)).c_str(), is_selected, selectable_flags)) {
+                    if (ImGui::GetIO().KeyShift) {
+                        // Shift+Click: Range Select
+                        if (last_selected_index != -1) {
+                             int start = (std::min)(last_selected_index, i);
+                             int end = (std::max)(last_selected_index, i);
+                             
+                             // Deselect all others if Ctrl not held? Explorer usually keeps previous state if just Shift
+                             // Standard Shift-Click logic: Select from Anchor to Current.
+                             // If Ctrl is NOT held, we explicitly set the range and clear others? 
+                             // Let's stick to simple "Add Range" or "Set Range".
+                             
+                             if (!ImGui::GetIO().KeyCtrl) {
+                                 // Clear others if Ctrl is not held
+                                 for (auto& f : files) f.is_selected = false;
+                             }
+
+                             for (int k = start; k <= end; k++) {
+                                 if (!files[k].is_filtered) files[k].is_selected = true;
+                             }
+                        } else {
+                            // No anchor, just select this one
+                            file.is_selected = true;
+                            last_selected_index = i;
+                        }
+                    } 
+                    else if (ImGui::GetIO().KeyCtrl) {
+                        // Ctrl+Click: Toggle
+                        file.is_selected = !file.is_selected;
+                        last_selected_index = i;
+                    } 
+                    else {
+                        // Regular Click: Select Single, Clear Others
+                        for (auto& f : files) f.is_selected = false;
+                        file.is_selected = true;
+                        last_selected_index = i;
+                    }
+                }
+                
+                // Visual Checkbox (Non-interactive mostly, reflects state)
+                ImGui::SameLine();
+                // Store cursor pos to draw over the Selectable? Or just draw simple text/icon
+                // Using standard checkbox but pass a dummy bool or the real one (careful with ID)
+                // Actually, Selectable handles the click. Just render a box state.
+                ImGui::Text(file.is_selected ? "[X]" : "[ ]"); 
+
+                ImGui::TableNextColumn();
+                ImGui::TextUnformatted(file.name.c_str());
+                if (ImGui::IsItemHovered()) ImGui::SetTooltip("%s", file.path.c_str());
+                
+                ImGui::TableNextColumn();
+                if (file.is_directory) ImGui::Text("-");
+                else ImGui::Text("%zu B", file.size);
+                
+                ImGui::TableNextColumn();
+                ImGui::Text(file.is_directory ? "Folder" : "File");
+            }
+            ImGui::EndTable();
+        }
+        ImGui::EndChild();
+
+        // --- 4. Actions Section ---
+        ImGui::Dummy(ImVec2(0, 5));
+        ImGui::Text("Actions:");
         ImGui::SameLine();
+        
         ImGui::BeginDisabled(selected_count == 0);
-        
-        if (ImGui::Button("Delete")) {
-             // Confirmation? For now just action
+        if (ImGui::Button("Delete Selected", ImVec2(150, 30))) {
              int deleted = scanner.ExecuteDelete();
-             if (deleted > 0)
-                my_log.AddLog("Deleted %d files.\n", deleted);
+             if (deleted > 0) my_log.AddLog("Deleted %d files.\n", deleted);
              last_selected_index = -1;
         }
         
         ImGui::SameLine();
-        if (ImGui::Button("Rename...")) {
+        if (ImGui::Button("Rename Selected", ImVec2(150, 30))) {
             show_rename_popup = true;
             ImGui::OpenPopup("Rename Files");
         }
@@ -279,16 +449,13 @@ int main(int, char**)
             
             if (ImGui::Button("Execute Rename", ImVec2(120, 0))) {
                 int renamed = scanner.ExecuteRename(rename_suffix_buffer);
-                if (renamed > 0)
-                    my_log.AddLog("Renamed %d files with suffix '%s'.\n", renamed, rename_suffix_buffer);
-                else
-                    my_log.AddLog("Rename failed or no files modified.\n");
+                if (renamed > 0) my_log.AddLog("Renamed %d files.\n", renamed);
+                else my_log.AddLog("Rename failed.\n");
                 
                 ImGui::CloseCurrentPopup();
                 show_rename_popup = false;
                 last_selected_index = -1;
             }
-            ImGui::SetItemDefaultFocus();
             ImGui::SameLine();
             if (ImGui::Button("Cancel", ImVec2(120, 0))) { 
                 ImGui::CloseCurrentPopup(); 
@@ -297,86 +464,34 @@ int main(int, char**)
             ImGui::EndPopup();
         }
 
-        // --- Main Table ---
-        ImGui::BeginChild("FileArea", ImVec2(0, main_area_height), true);
-        static ImGuiTableFlags flags = ImGuiTableFlags_ScrollY | ImGuiTableFlags_RowBg | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV | ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable;
+        ImGui::Dummy(ImVec2(0, 5));
+
+        // --- 5. Log Panel ---
+        ImGui::Dummy(ImVec2(0, 5));
+        ImGui::Separator();
+        ImGui::Text("Log Output:");
         
-        if (ImGui::BeginTable("FileTable", 4, flags)) {
-            ImGui::TableSetupScrollFreeze(0, 1); // Make top row always visible
-            ImGui::TableSetupColumn("Select", ImGuiTableColumnFlags_WidthFixed, 50.0f);
-            ImGui::TableSetupColumn("Name", ImGuiTableColumnFlags_None);
-            ImGui::TableSetupColumn("Size", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-            ImGui::TableSetupColumn("Type", ImGuiTableColumnFlags_WidthFixed, 100.0f);
-            ImGui::TableHeadersRow();
-
-            auto& files = scanner.GetFilesModifiable();
-            // Need index for range selection, so use standard for loop
-            for (int i = 0; i < (int)files.size(); i++) {
-                auto& file = files[i];
-                if (file.is_filtered) continue;
-
-                ImGui::TableNextRow();
-                ImGui::TableNextColumn();
-                
-                // Custom behavior for Shift+Click
-                // We use a custom Checkbox-like behavior or just intercept the click
-                bool clicked = ImGui::Checkbox(("##" + std::to_string(i)).c_str(), &file.is_selected);
-                
-                if (clicked) {
-                     if (ImGui::GetIO().KeyShift && last_selected_index != -1) {
-                         // Range select
-                         int start = (std::min)(last_selected_index, i);
-                         int end = (std::max)(last_selected_index, i);
-                         bool new_state = file.is_selected; // The state we just toggled to
-                         
-                         for (int k = start; k <= end; k++) {
-                             if (!files[k].is_filtered) {
-                                  files[k].is_selected = new_state;
-                             }
-                         }
-                     }
-                     last_selected_index = i;
-                }
-
-                ImGui::TableNextColumn();
-                ImGui::TextUnformatted(file.name.c_str());
-                if (ImGui::IsItemHovered()) ImGui::SetTooltip("%s", file.path.c_str()); // Show full path on hover
-                
-                ImGui::TableNextColumn();
-                if (file.is_directory)
-                    ImGui::Text("-");
-                else
-                    ImGui::Text("%zu B", file.size);
-                
-                ImGui::TableNextColumn();
-                ImGui::Text(file.is_directory ? "Folder" : "File");
-            }
-            ImGui::EndTable();
-        }
+        // Use remaining space for log
+        ImGui::BeginChild("LogPanel", ImVec2(0, 0), true);
+        my_log.Draw();
         ImGui::EndChild();
-
-        // --- Log Window ---
-        my_log.Draw("Log Output", NULL);
 
         ImGui::End();
 
-        // Rendering
         ImGui::Render();
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(0.45f, 0.55f, 0.60f, 1.00f);
+        glClearColor(0.12f, 0.12f, 0.12f, 1.00f); // Match window bg
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
     }
 
-    // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-
     glfwDestroyWindow(window);
     glfwTerminate();
 
